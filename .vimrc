@@ -15,12 +15,14 @@ Bundle 'Keithbsmiley/specta.vim'
 Bundle 'b4winckler/vim-objc'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-rake'
 
 filetype plugin indent on
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2 shiftwidth=2 expandtab
+
+set wrap
+set textwidth=80
 
 set nu
 nmap <S-Enter> O<Esc>
@@ -29,16 +31,15 @@ nmap <CR> o<Esc>
 noremap  <F2> :NERDTreeToggle<cr>
 inoremap <F2> <esc>:NERDTreeToggle<cr>
 
+set shell=/bin/sh
+set term=xterm-256color
+set background=dark
+
 autocmd BufReadPost,BufWrite *{Spec.m,Example*.m} set filetype=specta
+autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+autocmd BufNewFile,BufRead Podfile set filetype=ruby
 
 let c_no_curly_error = 1
-
-let g:clang_user_options='-fblocks -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/ -D__IPHONE_OS_VERSION_MIN_REQUIRED=70000'
-
-map <Left> :echo "Try H!"<cr>
-map <Right> :echo "Try L!"<cr>
-map <Up> :echo "Try K!"<cr>
-map <Down> :echo "Try J!"<cr>
 
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_match_window_bottom = 0
@@ -48,13 +49,4 @@ let g:ctrlp_mruf_max = 250
 
 set splitright
 
-set errorformat=
-  \%f:%l:%c:{%*[^}]}:\ error:\ %m,
-  \%f:%l:%c:{%*[^}]}:\ fatal\ error:\ %m,
-  \%f:%l:%c:{%*[^}]}:\ warning:\ %m,
-  \%f:%l:%c:\ error:\ %m,
-  \%f:%l:%c:\ fatal\ error:\ %m,
-  \%f:%l:%c:\ warning:\ %m,
-  \%f:%l:\ error:\ %m,
-  \%f:%l:\ fatal\ error:\ %m,
-  \%f:%l:\ warning:\ %m
+nmap ,n :NERDTreeFind<CR>
